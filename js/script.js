@@ -1,61 +1,45 @@
-let displayBox = document.getElementById("display");
+let num1 = 0
+let num2 = 0
+let operator = "+"
 
 document.addEventListener('click', function(e) {
     let btn = e.target;
-    switch (btn.id) {
-        case "btnAdd":
-            console.log("Add");
+    let oldValue = document.getElementById("display").getAttribute('value');
+    if (btn.tagName == "BUTTON"){
+        if(e.target.id === "btnClear") {
+            oldValue = "";
+            document.getElementById("display").setAttribute('value', "");
+        } else if (e.target.id === "btnResult") {
+            num2 = parseInt(document.getElementById("display").getAttribute('value'));
+            document.getElementById("display").setAttribute('value', CalculateResult(num1, num2, operator));
+        } else if (e.target.id === "btnAdd" || e.target.id === "btnSubtract" || e.target.id === "btnMultiply" || e.target.id === "btnDivide"){
+            num1 = parseInt(document.getElementById("display").getAttribute('value'));
+            operator = btn.value;
+            document.getElementById("display").setAttribute('value', "");
+        } else {
+            if (oldValue === null){
+                document.getElementById("display").setAttribute('value', e.target.textContent);
+            } else {
+                document.getElementById("display").setAttribute('value', oldValue + e.target.textContent);
+            }
+        }
+    }
+    
+}) 
+
+function CalculateResult(num1, num2, operator) {
+    switch (operator){
+        case "+":
+            return num1 + num2;
             break;
-        case "btnSubtract":
-            console.log("Subtract");
+        case "-":
+            return num1 - num2;
             break;
-        case "btnMultiply":
-            console.log("Multiply");
+        case "*":
+            return num1 * num2;
             break;
-        case "btnDivide":
-            console.log("Divide");
-            break;
-        case "btnResult":
-            console.log("Result");
-            break;
-        case "btnSeven":
-            console.log("7");
-            break;
-        case "btnEight":
-            console.log("8");
-            break;
-        case "btnNine":
-            console.log("9");
-            break;
-        case "btnFour":
-            console.log("4");
-            break;
-        case "btnFive":
-            console.log("5");
-            break;
-        case "btnSix":
-            console.log("6");
-            break;
-        case "btnThree":
-            console.log("3");
-            break;
-        case "btnOne":
-            console.log("1");
-            break;
-        case "btnTwo":
-            console.log("2");
-            break;
-        case "btnOne":
-            console.log("1");
-            break;
-        case "btnZero":
-            console.log("0");
-            break;
-        case "btnDecimal":
-            console.log(".");
-            break;
-        case "btnClear":
-            console.log("Clear")
+        case "/":
+            return num1 / num2;
             break;
     }
-})
+}
