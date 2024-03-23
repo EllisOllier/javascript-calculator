@@ -1,6 +1,6 @@
-let num1 = 0
-let num2 = 0
-let operator = "+"
+let firstInput = 0
+let secondInput = 0
+let operatorInput = "+"
 
 document.addEventListener('click', function(e) {
     let btn = e.target;
@@ -10,11 +10,11 @@ document.addEventListener('click', function(e) {
             buffer = "";
             document.getElementById("display").setAttribute('value', "");
         } else if (btn.id === "btnResult") {
-            num2 = parseFloat(document.getElementById("display").getAttribute('value'));
-            document.getElementById("display").setAttribute('value', CalculateResult(num1, num2, operator));
+            secondInput = parseFloat(document.getElementById("display").getAttribute('value'));
+            document.getElementById("display").setAttribute('value', CalculateResult(firstInput, secondInput, operatorInput));
         } else if (btn.id === "btnAdd" || btn.id === "btnSubtract" || btn.id === "btnMultiply" || btn.id === "btnDivide"){
-            num1 = parseFloat(document.getElementById("display").getAttribute('value'));
-            operator = btn.value;
+            firstInput = parseFloat(document.getElementById("display").getAttribute('value'));
+            operatorInput = btn.value;
             document.getElementById("display").setAttribute('value', "");
         } else {
             if (buffer === null){
@@ -26,19 +26,19 @@ document.addEventListener('click', function(e) {
     }
 }) 
 
-function CalculateResult(num1, num2, operator) {
+function CalculateResult(firstInput, secondInput, operator) {
     switch (operator){
         case "+":
-            return num1 + num2;
+            return firstInput + secondInput;
             break;
         case "-":
-            return num1 - num2;
+            return firstInput - secondInput;
             break;
         case "*":
-            return num1 * num2;
+            return firstInput * secondInput;
             break;
         case "/":
-            return num1 / num2;
+            return firstInput / secondInput;
             break;
     }
 }
