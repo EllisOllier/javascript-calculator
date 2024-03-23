@@ -10,10 +10,10 @@ document.addEventListener('click', function(e) {
             oldValue = "";
             document.getElementById("display").setAttribute('value', "");
         } else if (e.target.id === "btnResult") {
-            num2 = parseInt(document.getElementById("display").getAttribute('value'));
+            num2 = parseFloat(document.getElementById("display").getAttribute('value'));
             document.getElementById("display").setAttribute('value', CalculateResult(num1, num2, operator));
         } else if (e.target.id === "btnAdd" || e.target.id === "btnSubtract" || e.target.id === "btnMultiply" || e.target.id === "btnDivide"){
-            num1 = parseInt(document.getElementById("display").getAttribute('value'));
+            num1 = parseFloat(document.getElementById("display").getAttribute('value'));
             operator = btn.value;
             document.getElementById("display").setAttribute('value', "");
         } else {
@@ -24,7 +24,6 @@ document.addEventListener('click', function(e) {
             }
         }
     }
-    
 }) 
 
 function CalculateResult(num1, num2, operator) {
