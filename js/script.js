@@ -1,26 +1,26 @@
 let firstInput = 0
 let secondInput = 0
-let operatorInput = "+"
+let operator = "+"
 
 document.addEventListener('click', function(e) {
     let button = e.target;
     let buffer = document.getElementById("display").getAttribute('value');
     if (button.tagName == "BUTTON"){
-        if(button.id === "buttonClear") {
+        if(e.target.id === "btnClear") {
             buffer = "";
             document.getElementById("display").setAttribute('value', "");
-        } else if (button.id === "buttonResult") {
+        } else if (e.target.id === "btnResult") {
             secondInput = parseFloat(document.getElementById("display").getAttribute('value'));
-            document.getElementById("display").setAttribute('value', CalculateResult(firstInput, secondInput, operatorInput));
-        } else if (button.id === "buttonAdd" || button.id === "buttonSubtract" || button.id === "buttonMultiply" || button.id === "buttonDivide"){
+            document.getElementById("display").setAttribute('value', CalculateResult(firstInput, secondInput, operator));
+        } else if (e.target.id === "btnAdd" || e.target.id === "btnSubtract" || e.target.id === "btnMultiply" || e.target.id === "btnDivide"){
             firstInput = parseFloat(document.getElementById("display").getAttribute('value'));
-            operatorInput = button.value;
+            operator = button.value;
             document.getElementById("display").setAttribute('value', "");
         } else {
             if (buffer === null){
-                document.getElementById("display").setAttribute('value', button.textContent);
+                document.getElementById("display").setAttribute('value', e.target.textContent);
             } else {
-                document.getElementById("display").setAttribute('value', buffer + button.textContent);
+                document.getElementById("display").setAttribute('value', buffer + e.target.textContent);
             }
         }
     }
